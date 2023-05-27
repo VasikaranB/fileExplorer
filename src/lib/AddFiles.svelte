@@ -205,6 +205,7 @@
       name="name"
       placeholder="Enter name..."
       bind:value={name}
+      maxlength="35"
       on:input={validateFolderName}
     />
   </div>
