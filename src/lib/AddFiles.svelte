@@ -452,6 +452,13 @@
     background-color: #0066cc;
   }
 
+  .dark .btn-save:disabled {
+    border: 1px solid #999999;
+    background-color: #f2f2f2;
+    color: #333;
+    pointer-events: none;
+  }
+
   .dark .btn-cancel {
     background-color: #f2f2f2;
     color: #333;
