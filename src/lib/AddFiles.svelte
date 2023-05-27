@@ -97,10 +97,12 @@
   function toggleCollapse() {
     expand = !expand;
     folder.children.forEach((rootfolder) => {
-      if (rootfolder.type == "folder") rootfolder.open = expand;
+      if (rootfolder.type == "folder") {
+        rootfolder.open = expand;
       rootfolder.children.forEach((childfolder) => {
         if (childfolder.type == "folder") childfolder.open = expand;
       });
+      }
     });
     folder = { ...folder };
   }

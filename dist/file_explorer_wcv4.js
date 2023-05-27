@@ -923,9 +923,9 @@ function xt(t, e, l) {
   } } = e, c = "", _ = "folder", g = "root", x = !1, z = !1, O = !0, b = !1;
   function C() {
     l(8, b = !b), s.children.forEach((k) => {
-      k.type == "folder" && (k.open = b), k.children.forEach((w) => {
+      k.type == "folder" && (k.open = b, k.children.forEach((w) => {
         w.type == "folder" && (w.open = b);
-      });
+      }));
     }), l(0, s = { ...s });
   }
   function R(k, w) {
