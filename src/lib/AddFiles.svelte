@@ -74,6 +74,7 @@
   let type = "folder";
   let parentFolder = "root";
   let error = false;
+  let nameError = false;
   let disabled = true;
   let expand = false;
   
@@ -84,7 +85,7 @@
     }
   });
   $: fileNode = fileList.flat();
-  $: disabled = name == "" || type == "" || parentFolder == "";
+  $: disabled = name == "" || type == "" || parentFolder == "" || nameError;
 
   function toggleCollapse() {
     expand = !expand;
@@ -168,6 +169,15 @@
     }
   }
 
+  function validateFolderName() {
+    const folderNameRegex = /^[a-zA-Z0-9_\-]*$/;
+    if (!folderNameRegex.test(name)) {
+      nameError = true
+    } else {
+      nameError = false
+    }
+  }
+
   function handleCancel() {
     name = "";
     type = "folder";
@@ -190,7 +200,11 @@
       name="name"
       placeholder="Enter name..."
       bind:value={name}
+      on:input={validateFolderName}
     />
+  </div>
+  <div class={nameError === true ? "nameError" : "d-none"}>
+    Invalid Folder/File Name
   </div>
 
   <div class="form-group">
@@ -204,13 +218,13 @@
   <div id="folder-select" class="form-group">
     <label for="folder">Folder:</label>
     <select id="folder" name="folder" bind:value={parentFolder}>
-      <option value="root">Root level</option>
+      <option class="sel-option" value="root">Root level</option>
       {#each folderNode as folder}
-        <option value={folder?.name}>{folder?.name}</option>
+        <option class="sel-option" value={folder?.name}>{folder?.name}</option>
       {/each}
       {#if type == "file"}
         {#each fileNode as subfolder}
-          <option value={subfolder?.name}>{subfolder?.name}</option>
+          <option class="sel-option" value={subfolder?.name}>{subfolder?.name}</option>
         {/each}
       {/if}
     </select>
@@ -262,6 +276,11 @@
   }
   .error {
     color: red;
+  }
+  .nameError {
+    color: red;
+    margin-top: -2rem;
+    font-size: 0.8rem;
   }
   .fs {
     min-height: 1rem;
@@ -350,6 +369,12 @@
 
   .btn-cancel:hover {
     background-color: #e6e6e6;
+  }
+  .sel-option {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
   }
 
   /* dark mode */

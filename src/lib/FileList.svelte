@@ -82,6 +82,10 @@
   .folder-label {
     margin-left: 1rem;
     font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
   }
 
   .file {
