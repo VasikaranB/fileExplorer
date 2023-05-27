@@ -3,9 +3,16 @@
 <script>
   import { onMount, onDestroy } from "svelte";
   import { createEventDispatcher } from "svelte";
+  import { get_current_component } from 'svelte/internal';
   import FileList from "./FileList.svelte";
 
-  const dispatch = createEventDispatcher();
+  const svelteDispatch = createEventDispatcher();
+  const component = get_current_component();
+
+  const dispatch = (name, detail) => {
+    svelteDispatch(name, detail);
+    component?.dispatchEvent(new CustomEvent(name, { detail }));
+  };
 
   // Define the component's props
   export let darkmode = true;
@@ -158,7 +165,7 @@
         newObject.children = [];
       }
       insertObjectIntoFolder(targetFolder, newObject);
-      dispatch("save", {
+      dispatch("foldersave", {
         folder : folder
       });
       name = "";
