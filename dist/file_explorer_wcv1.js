@@ -882,7 +882,7 @@ function wt(t) {
 function xt(t, e, l) {
   let n, o, r;
   const s = st();
-  let { darkmode: u = !1 } = e, { folder: f = {
+  let { darkmode: u = !0 } = e, { folder: f = {
     name: "root",
     type: "folder",
     children: [
@@ -945,7 +945,7 @@ function xt(t, e, l) {
   function O() {
     if (i != "" && d != "" && a != "") {
       const b = a, y = { name: i, type: d, open: !1 };
-      d == "folder" && (y.children = []), k(b, y), s("save", { name: i, type: d, parentFolder: a }), l(2, i = ""), l(3, d = "folder"), l(4, a = "root");
+      d == "folder" && (y.children = []), k(b, y), s("save", { folder: f }), l(2, i = ""), l(3, d = "folder"), l(4, a = "root");
     }
   }
   function W() {

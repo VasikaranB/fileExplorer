@@ -8,7 +8,7 @@
   const dispatch = createEventDispatcher();
 
   // Define the component's props
-  export let darkmode = false;
+  export let darkmode = true;
   export let folder = {
     name: "root",
     type: "folder",
@@ -159,9 +159,7 @@
       }
       insertObjectIntoFolder(targetFolder, newObject);
       dispatch("save", {
-        name: name,
-        type: type,
-        parentFolder: parentFolder,
+        folder : folder
       });
       name = "";
       type = "folder";
