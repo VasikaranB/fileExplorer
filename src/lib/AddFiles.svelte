@@ -15,7 +15,7 @@
   };
 
   // Define the component's props
-  export let darkmode = true;
+  export let darkmode = false;
   export let folder = {
     name: "root",
     type: "folder",

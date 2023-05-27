@@ -884,7 +884,7 @@ function xt(t, e, l) {
   const f = st(), u = ke(), a = (k, w) => {
     f(k, w), u == null || u.dispatchEvent(new CustomEvent(k, { detail: w }));
   };
-  let { darkmode: i = !0 } = e, { folder: s = {
+  let { darkmode: i = !1 } = e, { folder: s = {
     name: "root",
     type: "folder",
     children: [
